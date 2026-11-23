@@ -61,7 +61,7 @@ export function voo() {
   const marcos = [...secao.querySelectorAll('.marco')].map(el => ({ el, de: +el.dataset.de }));
   secao.style.setProperty('--telas', TELAS);
 
-  const base = `/frames/${FOTOS ? 'fotos' : HD ? 'hd' : celular.matches ? 'mobile' : 'desktop'}`;
+  const base = `${import.meta.env.BASE_URL}frames/${FOTOS ? 'fotos' : HD ? 'hd' : celular.matches ? 'mobile' : 'desktop'}`;
   const f = filme({ canvas, base });
   f.primeiro.then(() => requestAnimationFrame(() => secao.classList.add('is-vivo')));
 
