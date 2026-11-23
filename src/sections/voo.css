@@ -1,4 +1,4 @@
-.voo { position: relative; height: calc(var(--telas, 17.4) * 100svh + var(--folha-sobe)); background: var(--noite); }
+.voo { position: relative; height: calc(var(--telas, 9.4) * 100svh + var(--folha-sobe)); background: var(--noite); }
 .voo__palco { position: sticky; top: 0; height: 100svh; height: 100dvh; overflow: hidden; color: var(--sobre); }
 .voo__poster, .voo__poster img, .voo__tela { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .voo.is-vivo .voo__poster { visibility: hidden; }

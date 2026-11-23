@@ -13,6 +13,7 @@ import { filme } from './filme.js';
 // (medido pela diferença entre quadros do vídeo, a cada segundo): o sobrevoo da piscina, que é o trecho mais rápido,
 // ganha mais rolagem por segundo; o fim, quando a câmera sobe devagar, ganha menos. Assim cada tela rolada muda a
 // imagem mais ou menos o mesmo tanto, e o começo não pula. Um piso garante que nenhum trecho passe voando.
+const RITMO = 0.5;  // quanto da rolagem original o voo usa: menor = o vídeo anda mais a cada giro da roda
 const PARADAS = [
   [0, 0],       // parado no 1º quadro: o hero respira
   [0.35, 0],
@@ -23,7 +24,7 @@ const PARADAS = [
   [11.88, 11], [13.23, 12],          // a porta e a fachada de lado
   [14.16, 13], [14.88, 14], [15.6, 15], // de frente, subindo de ré até a casa inteira
   [16, 15],     // parado no último quadro: o CTA fica clicável
-];
+].map(([tela, segundo]) => [tela * RITMO, segundo]);
 const FIM = PARADAS.at(-1)[0];
 // no celular a tela cresce quando a barra do navegador some (o palco acompanha, em dvh): meia tela a mais de
 // último quadro parado, para a folha nunca aparecer antes do fim do filme
@@ -32,7 +33,7 @@ const toque = matchMedia('(hover: none) and (pointer: coarse)').matches;
 // arco sair por cima soma em CSS (--folha-sobe, em voo.css)
 export const TELAS = FIM + 1.4 + (toque ? 0.5 : 0);
 
-const VMAX = 2;     // segundos de vídeo por segundo, no máximo (rolando rápido, o voo toca em ~7,5 s)
+const VMAX = 4;     // segundos de vídeo por segundo, no máximo (rolando rápido, o voo toca em ~3,75 s)
 const SEGUE = 10;   // quão depressa o filme alcança a rolagem: colado, porque a maciez já vem do Lenis pesado
 const SALTO = 3.6;  // para trás, distância (s de vídeo) a partir da qual corta pelo fade
 const DUR = 15;
