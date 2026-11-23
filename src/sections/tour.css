@@ -1,0 +1,18 @@
+.tour { background: var(--pagina); padding: clamp(104px, 9vw, 130px) var(--gutter) clamp(64px, 9vw, 120px); }
+.tour__caixa { max-width: var(--larga); margin: 0 auto; border: 1px solid var(--fio); }
+.tour__quadro { position: relative; overflow: hidden; aspect-ratio: 16 / 9; max-height: 78svh; width: 100%; background: var(--noite); }
+.tour__quadro img, .tour__quadro iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.tour__quadro img { object-fit: cover; }
+.tour__capa { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 18px; padding: var(--gutter); color: var(--sobre); text-align: center; background: rgba(18, 14, 10, .5); }
+.tour__quadro.is-aberto img, .tour__quadro.is-aberto .tour__capa { display: none; }
+.tour__pe { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 24px; padding: 14px clamp(14px, 1.6vw, 24px); border-top: 1px solid var(--fio); color: var(--tinta-2); }
+.tour__acoes { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.tour__link { padding: 4px 0; border: 0; border-bottom: 1px solid currentColor; background: none; color: var(--tinta); font: inherit; font-size: 15px; cursor: pointer; }
+.tour__link[hidden] { display: none; }
+
+@media (hover: hover) {
+  html:not(.is-scrolling) .tour__link:hover { color: var(--tinta-2); }
+}
+@media (max-width: 700px) {
+  .tour__quadro { aspect-ratio: 4 / 5; max-height: 68svh; }
+}

@@ -7,6 +7,7 @@ import './sections/nav.css';
 import './sections/voo.css';
 import './sections/folha.css';
 import './sections/casas.css';
+import './sections/tour.css';
 import './sections/visita.css';
 import './sections/rodape.css';
 
@@ -16,9 +17,11 @@ import { nav } from './motion/nav.js';
 import { entradas } from './motion/entradas.js';
 import { form } from './motion/form.js';
 import { barra } from './motion/barra.js';
+import { tour } from './motion/tour.js';
 
 carga(voo());
 nav();
 entradas();
 form();
 barra();
+tour();

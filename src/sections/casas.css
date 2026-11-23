@@ -1,4 +1,4 @@
-.casas { background: var(--pagina); padding: clamp(104px, 9vw, 130px) var(--gutter) clamp(64px, 9vw, 120px); }
+.casas { background: var(--pagina); padding: clamp(104px, 9vw, 130px) var(--gutter) 0; }
 .casas__grade { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); max-width: var(--larga); margin: 0 auto; border: 1px solid var(--fio); }
 .celula { display: flex; flex-direction: column; gap: 6px; padding: clamp(14px, 1.6vw, 24px); border-left: 1px solid var(--fio); }
 .celula:first-child { border-left: 0; }
