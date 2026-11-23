@@ -41,7 +41,7 @@ const DUR = 15;
 const HD = new URLSearchParams(location.search).has('hd');
 // sem vídeo: true troca o filme por uma foto por marco (public/frames/fotos/0001…0006.webp + manifest.json),
 // trocadas por corte, como no movimento reduzido
-const FOTOS = false;
+const FOTOS = true;
 const celular = matchMedia('(orientation: portrait) and (max-width: 900px)');
 
 function alvoDe(y) {
@@ -62,7 +62,7 @@ export function voo() {
   const marcos = [...secao.querySelectorAll('.marco')].map(el => ({ el, de: +el.dataset.de }));
   secao.style.setProperty('--telas', TELAS);
 
-  const base = `${import.meta.env.BASE_URL}frames/${FOTOS ? 'fotos' : HD ? 'hd' : celular.matches ? 'mobile' : 'desktop'}`;
+  const base = `${import.meta.env.BASE_URL}frames/${FOTOS ? 'fotos/' : ''}${!FOTOS && HD ? 'hd' : celular.matches ? 'mobile' : 'desktop'}`;
   const f = filme({ canvas, base });
   f.primeiro.then(() => requestAnimationFrame(() => secao.classList.add('is-vivo')));
 
@@ -137,6 +137,7 @@ export function voo() {
     if (!liberado) { f.mostra(0); return; }
     if (reduzido() || FOTOS) {
       if (y < -1) return;
+      secao.classList.toggle('is-coberto', y > TELAS - 0.55);
       const i = indice(alvoDe(y));
       marca(i, reduzido());
       f.mostra(FOTOS ? i : Math.round(fixo(i) * f.fps));
