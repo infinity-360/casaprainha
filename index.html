@@ -8,10 +8,10 @@
   <meta name="theme-color" content="#12100d">
   <link rel="icon" href="/casaprainha/favicon.svg" type="image/svg+xml">
   <style>html{background:#12100d}</style>
-  <link rel="preload" as="image" href="/casaprainha/frames/desktop/0001.webp" media="not all and (orientation: portrait) , (min-width: 901px)">
-  <link rel="preload" as="image" href="/casaprainha/frames/mobile/0001.webp" media="(orientation: portrait) and (max-width: 900px)">
-  <script type="module" crossorigin src="/casaprainha/assets/index-C67gsU-L.js"></script>
-  <link rel="stylesheet" crossorigin href="/casaprainha/assets/index-C6bgL9gM.css">
+  <link rel="preload" as="image" href="/casaprainha/frames/fotos/desktop/0001.webp" media="not all and (orientation: portrait) , (min-width: 901px)">
+  <link rel="preload" as="image" href="/casaprainha/frames/fotos/mobile/0001.webp" media="(orientation: portrait) and (max-width: 900px)">
+  <script type="module" crossorigin src="/casaprainha/assets/index-UMWj22AI.js"></script>
+  <link rel="stylesheet" crossorigin href="/casaprainha/assets/index-BG07DZr9.css">
 </head>
 <body>
   <div class="carga" data-carga aria-hidden="true">
@@ -35,8 +35,8 @@
     <section class="voo" id="topo" data-voo>
       <div class="voo__palco">
         <picture class="voo__poster">
-          <source media="(orientation: portrait) and (max-width: 900px)" srcset="/casaprainha/frames/mobile/0001.webp">
-          <img src="/casaprainha/frames/desktop/0001.webp" alt="Vista da orla da Prainha, com o mar e as palmeiras" width="1440" height="810" fetchpriority="high">
+          <source media="(orientation: portrait) and (max-width: 900px)" srcset="/casaprainha/frames/fotos/mobile/0001.webp">
+          <img src="/casaprainha/frames/fotos/desktop/0001.webp" alt="A casa, a orla e o mar da Prainha em uma foto 360 no formato de pequeno planeta" width="1920" height="1080" fetchpriority="high">
         </picture>
         <canvas class="voo__tela" aria-hidden="true"></canvas>
         <div class="voo__veu"></div>
@@ -132,21 +132,14 @@
     <section class="tour" id="tour">
       <div class="secao__topo entra">
         <h2 class="secao__titulo">Tour virtual<br>360°</h2>
-        <p>Ande pelos ambientes e olhe para todos os lados. Este é um tour de exemplo, de outro imóvel. O da Casa Prainha entra neste espaço.</p>
+        <p>Ande pelos ambientes e olhe para todos os lados. Este é um tour de exemplo. O da Casa Prainha entra neste espaço.</p>
       </div>
       <div class="tour__caixa entra">
         <div class="tour__quadro" data-tour data-src="https://pbem360.com.br/restinga/">
           <img src="/casaprainha/img/varanda.webp" alt="" width="1200" height="900" loading="lazy" decoding="async">
           <div class="tour__capa">
             <p class="rotulo">Tour de exemplo</p>
-            <button class="botao botao--claro" type="button" data-tour-abre>Abrir o tour 360° <span class="seta">→</span></button>
-          </div>
-        </div>
-        <div class="tour__pe">
-          <p class="rotulo">Exemplo · outro imóvel</p>
-          <div class="tour__acoes">
-            <button class="tour__link" type="button" data-tour-fecha hidden>Fechar o tour</button>
-            <a class="tour__link" href="https://pbem360.com.br/restinga/" target="_blank" rel="noopener">Abrir em nova aba</a>
+            <button class="botao botao--claro" type="button" data-tour-abre>Ver em tela cheia <span class="seta">→</span></button>
           </div>
         </div>
       </div>
@@ -188,6 +181,13 @@
     </div>
     <div class="rodape__pe"><span class="rodape__marca">Casa Prainha</span><span>Imagem 360 do voo: © 2026 Google. Datas e valores pelo WhatsApp.</span></div>
   </footer>
+
+  <div class="tour__tela" data-tour-tela data-lenis-prevent role="dialog" aria-modal="true" aria-label="Tour virtual 360°" hidden>
+    <div class="tour__barra">
+      <p class="rotulo">Casa Prainha · Tour 360°</p>
+      <button class="botao botao--claro" type="button" data-tour-fecha>Fechar <span aria-hidden="true">×</span></button>
+    </div>
+  </div>
 
   <div class="barra" data-barra aria-hidden="true"><i></i></div>
 </body>
