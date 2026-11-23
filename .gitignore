@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.claude/
+
+# material de trabalho: fica só no computador
+arquivos/
+fonte/
+video/
+AGENTS.md
+CLAUDE.md
+COMECE-AQUI.md
+PROMPT.md

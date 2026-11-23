@@ -1,0 +1,17 @@
+.rodape { position: relative; z-index: 3; background: var(--tinta); color: var(--sobre); padding: clamp(56px, 7vw, 100px) var(--gutter) 28px; }
+.rodape__topo { display: flex; justify-content: space-between; gap: 40px; max-width: var(--larga); margin: 0 auto clamp(48px, 6vw, 80px); }
+.rodape__grandes { display: grid; justify-items: start; }
+.rodape__grandes a { font-size: clamp(48px, 7vw, 132px); font-weight: 300; line-height: 1.12; text-transform: uppercase; transition: opacity .35s, transform .5s var(--entra); }
+.rodape__info { display: grid; align-content: start; gap: 34px; min-width: 240px; }
+.rodape__info > div { display: grid; justify-items: start; gap: 8px; }
+.rodape__info .rotulo { color: #a29e95; margin-bottom: 4px; }
+.rodape__pe { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; max-width: var(--larga); margin: 0 auto; padding-top: 20px; border-top: 1px solid #3a3934; color: #a29e95; font-size: 14px; }
+.rodape__marca { color: var(--sobre); font-weight: 300; letter-spacing: .26em; text-transform: uppercase; }
+
+@media (hover: hover) {
+  html:not(.is-scrolling) .rodape__grandes:hover a { opacity: .32; }
+  html:not(.is-scrolling) .rodape__grandes a:hover { opacity: 1; transform: translateX(12px); }
+}
+@media (max-width: 760px) {
+  .rodape__topo { flex-direction: column; }
+}

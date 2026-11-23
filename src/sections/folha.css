@@ -1,0 +1,50 @@
+.folha { position: relative; z-index: 2; margin-top: calc(-1 * var(--folha-sobe)); }
+.folha__arco { position: relative; height: calc(var(--arco-topo) + var(--arco-alto)); overflow: hidden; }
+.folha__vao { position: absolute; top: var(--arco-topo); left: 50%; width: var(--arco-largo); height: var(--arco-alto); transform: translateX(-50%); border-radius: 50% 50% 0 0 / calc(var(--arco-largo) / 2) calc(var(--arco-largo) / 2) 0 0; box-shadow: 0 0 0 300vmax var(--pagina); }
+
+.janela { position: absolute; inset: 0; overflow: hidden; border: clamp(6px, 1vh, 9px) solid var(--tinta); border-bottom-width: clamp(12px, 2vh, 18px); border-radius: inherit; --resto: calc(var(--arco-alto) - var(--arco-largo) / 2); }
+.janela i { position: absolute; display: block; background: var(--tinta); }
+.janela__m { top: 0; bottom: 0; width: 4px; margin-left: -2px; }
+.janela__m--1 { left: 33.333%; }
+.janela__m--2 { left: 66.666%; }
+.janela__t { left: 0; right: 0; height: 4px; margin-top: -2px; }
+.janela__t--1 { top: calc(var(--arco-largo) / 2); }
+.janela__t--2 { top: calc(var(--arco-largo) / 2 + var(--resto) / 3); }
+.janela__t--3 { top: calc(var(--arco-largo) / 2 + var(--resto) * 2 / 3); }
+
+.folha__nota { position: absolute; top: calc(var(--arco-topo) + var(--arco-largo) / 2 - 12px); display: grid; gap: 10px; color: var(--tinta); }
+.folha__nota .rotulo { color: var(--tinta-2); }
+.folha__texto { font-size: var(--f-h3); line-height: 1.2; }
+.folha__nota--esq { right: calc(50% + var(--arco-largo) / 2 + clamp(24px, 3vw, 48px)); text-align: right; }
+.folha__nota--dir { left: calc(50% + var(--arco-largo) / 2 + clamp(24px, 3vw, 48px)); }
+
+.maison { position: relative; background: var(--pagina); border-top: 1px solid var(--fio); padding: clamp(104px, 9vw, 130px) var(--gutter) clamp(64px, 9vw, 130px); }
+.maison__titulo { font-size: var(--f-h2); font-weight: 300; line-height: 1; letter-spacing: -.01em; text-align: center; text-transform: uppercase; margin-bottom: clamp(40px, 6vw, 84px); }
+.maison__grade { display: grid; grid-template-columns: 1fr minmax(0, 1.15fr) 1fr; gap: clamp(28px, 4vw, 64px); max-width: var(--larga); margin: 0 auto; }
+.maison__esq { display: grid; align-content: start; justify-items: start; gap: 20px; }
+.maison__esq p { color: var(--tinta-2); }
+.maison__foto { overflow: hidden; aspect-ratio: 4 / 5; background: var(--pagina-2); }
+.maison__foto img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 1.8s var(--entra); }
+.maison__foto.is-in img { transform: none; }
+.maison__dir { display: flex; flex-direction: column; }
+.topico { padding: 0 0 20px; margin-bottom: 20px; border-bottom: 1px solid var(--fio); }
+.topico h3 { font-size: var(--f-h3); font-weight: 400; line-height: 1.25; margin-bottom: 6px; }
+.topico p { color: var(--tinta-2); }
+.maison__num { margin-top: auto; display: grid; gap: 8px; }
+.maison__num strong { font-size: clamp(44px, 4.4vw, 72px); font-weight: 200; line-height: 1; text-transform: uppercase; letter-spacing: -.01em; }
+.maison__num .rotulo { color: var(--tinta-2); }
+
+@media (max-width: 900px) {
+  .maison__grade { grid-template-columns: 1fr; }
+  .maison__foto { order: -1; }
+  .maison__num { margin-top: 16px; }
+}
+@media (max-width: 700px) {
+  .folha__nota { top: 80px; gap: 4px; }
+  .folha__nota--esq { left: var(--gutter); right: auto; text-align: left; }
+  .folha__nota--dir { right: var(--gutter); left: auto; text-align: right; }
+  .folha__nota .folha__texto { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .maison__foto img { transform: none; transition: none; }
+}

@@ -1,0 +1,42 @@
+*, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+html { background: var(--noite); scrollbar-width: none; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+html::-webkit-scrollbar { display: none; }
+html.is-carregando { overflow: hidden; }
+html.is-arrastando { user-select: none; cursor: grabbing; }
+body { margin: 0; background: var(--pagina); color: var(--tinta); font: 400 17px/1.55 var(--sans); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+img, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
+
+.rotulo { font-size: 11.5px; font-weight: 450; letter-spacing: .24em; text-transform: uppercase; line-height: 1.4; }
+.h3 { font-size: var(--f-h3); font-weight: 400; line-height: 1.25; }
+
+.botao { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 46px; padding: 12px 22px; border: 1px solid transparent; background: none; font-size: 11.5px; font-weight: 450; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; transition: background-color .3s, color .3s, border-color .3s, transform .15s; }
+.botao:active { transform: scale(.97); }
+.seta { display: inline-block; font-size: 15px; letter-spacing: 0; transition: transform .35s var(--entra); }
+.botao--claro { background: var(--sobre); color: var(--tinta); }
+.botao--fio { border-color: currentColor; }
+.botao--escuro { background: var(--tinta); color: var(--sobre); }
+
+@media (hover: hover) {
+  html:not(.is-scrolling) .botao:hover .seta { transform: translateX(4px); }
+  html:not(.is-scrolling) .botao--claro:hover { background: #fff; }
+  html:not(.is-scrolling) .botao--fio:hover { background: var(--sobre); border-color: var(--sobre); color: var(--tinta); }
+  html:not(.is-scrolling) .nav.is-clara .botao--fio:hover { background: var(--tinta); border-color: var(--tinta); color: var(--sobre); }
+  html:not(.is-scrolling) .botao--escuro:hover { background: #33322e; }
+}
+
+.entra { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--entra), transform 1s var(--entra); }
+.entra.is-in { opacity: 1; transform: none; }
+
+.barra { position: fixed; z-index: 60; top: 0; right: 0; width: 10px; height: 100vh; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.barra.is-vista { opacity: 1; pointer-events: auto; }
+.barra i { display: block; width: 4px; margin-left: auto; margin-right: 2px; background: #8b877d; cursor: grab; mix-blend-mode: difference; }
+
+@media (prefers-reduced-motion: reduce) {
+  .entra { opacity: 1; transform: none; transition: none; }
+  .seta, .botao { transition: none; }
+}
