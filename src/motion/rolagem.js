@@ -8,7 +8,7 @@ const mq = matchMedia('(prefers-reduced-motion: reduce)');
 export const reduzido = () => mq.matches;
 
 // os links internos ficam com motion/voo.js (os que atravessam o voo cortam pelo fade)
-export const lenis = reduzido() ? null : new Lenis({ autoRaf: true, lerp: 0.05, wheelMultiplier: 0.8, touchMultiplier: 1.1 });
+export const lenis = reduzido() ? null : new Lenis({ autoRaf: true, lerp: 0.12, wheelMultiplier: 1, touchMultiplier: 1.1 });
 
 const quem = new Set();
 let vivo = false;

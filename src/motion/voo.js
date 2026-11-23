@@ -13,7 +13,9 @@ import { filme } from './filme.js';
 // (medido pela diferença entre quadros do vídeo, a cada segundo): o sobrevoo da piscina, que é o trecho mais rápido,
 // ganha mais rolagem por segundo; o fim, quando a câmera sobe devagar, ganha menos. Assim cada tela rolada muda a
 // imagem mais ou menos o mesmo tanto, e o começo não pula. Um piso garante que nenhum trecho passe voando.
-const RITMO = 0.5;  // quanto da rolagem original o voo usa: menor = o vídeo anda mais a cada giro da roda
+// sem vídeo: true troca o filme por uma foto por marco (public/frames/fotos/desktop e mobile + manifest.json)
+const FOTOS = true;
+const RITMO = FOTOS ? 0.22 : 0.5;  // quanto da rolagem original o voo usa: menor = a página fica presa por menos tempo
 const PARADAS = [
   [0, 0],       // parado no 1º quadro: o hero respira
   [0.35, 0],
@@ -31,7 +33,7 @@ const FIM = PARADAS.at(-1)[0];
 const toque = matchMedia('(hover: none) and (pointer: coarse)').matches;
 // depois do fim, um respiro no último quadro (0,4 tela) e a tela em que a folha chega do pé; a subida dela até o
 // arco sair por cima soma em CSS (--folha-sobe, em voo.css)
-export const TELAS = FIM + 1.4 + (toque ? 0.5 : 0);
+export const TELAS = FIM + 1.4 + (toque && !FOTOS ? 0.5 : 0);
 
 const VMAX = 4;     // segundos de vídeo por segundo, no máximo (rolando rápido, o voo toca em ~3,75 s)
 const SEGUE = 10;   // quão depressa o filme alcança a rolagem: colado, porque a maciez já vem do Lenis pesado
@@ -39,9 +41,6 @@ const SALTO = 3.6;  // para trás, distância (s de vídeo) a partir da qual cor
 const DUR = 15;
 
 const HD = new URLSearchParams(location.search).has('hd');
-// sem vídeo: true troca o filme por uma foto por marco (public/frames/fotos/0001…0006.webp + manifest.json),
-// trocadas por corte, como no movimento reduzido
-const FOTOS = true;
 const celular = matchMedia('(orientation: portrait) and (max-width: 900px)');
 
 function alvoDe(y) {
@@ -138,9 +137,13 @@ export function voo() {
     if (reduzido() || FOTOS) {
       if (y < -1) return;
       secao.classList.toggle('is-coberto', y > TELAS - 0.55);
-      const i = indice(alvoDe(y));
+      const s = alvoDe(y), i = indice(s);
       marca(i, reduzido());
-      f.mostra(FOTOS ? i : Math.round(fixo(i) * f.fps));
+      if (!FOTOS) { f.mostra(Math.round(fixo(i) * f.fps)); return; }
+      // a foto seguinte entra aos poucos com a rolagem, para a imagem sempre responder ao gesto
+      const prox = marcos[i + 1], p = prox ? (s - marcos[i].de) / (prox.de - marcos[i].de) : 0;
+      const mistura = reduzido() ? 0 : Math.max(0, Math.min(1, (p - 0.72) / 0.28));
+      f.mostra(i + mistura * mistura * (3 - 2 * mistura));
       return;
     }
     // a página abre onde estiver (recarregada no meio): o filme começa ali, sem tocar até lá
